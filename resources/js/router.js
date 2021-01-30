@@ -12,5 +12,4 @@ export default new VueRouter({
             component:Home
         }
     ],
-    mode:'history'
 })
