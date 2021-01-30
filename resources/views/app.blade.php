@@ -8,7 +8,7 @@
 
 </head>
 
-<body>
+<body dir="rtl">
     <div id="app">
         <App></App>
     </div>
