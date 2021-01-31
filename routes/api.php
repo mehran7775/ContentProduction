@@ -21,13 +21,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'Api\AppController@index');
 
 Route::group(['namespace' => 'Api\FrontEnd'], function () {
+    
 });
 
 Route::group(['namespace' => 'Api\Admin'], function () {
 });
 
 Route::group(['prefix' => 'users'], function () {
-    Route::post('create', [
+    Route::post('register', [
         'uses' => 'AuthController@create',
         'as' => 'create.user',
     ]);

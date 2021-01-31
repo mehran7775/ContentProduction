@@ -19,7 +19,7 @@ export default {
             })
     },
     get_register() {
-        ApiService.get('register', {
+        ApiService.get('users/register', {
             headers: {
                 'Content-Type': 'application/json',
             }
@@ -34,15 +34,29 @@ export default {
             })
     },
     register({ commit }, payload) {
-        console.log('login')
-    },
-    get_login() {
-        ApiService.get('login', {
+        ApiService.post('users/register', payload,{
             headers: {
                 'Content-Type': 'application/json',
             }
         })
             .then(response => {
+                console.log(response)
+                // if (response.data.result === true && response.status === 200) {
+                //     commit('change_response_api_home', response.data.result);
+                // }
+            })
+            .catch(error => {
+                console.log(error.response)
+            })
+    },
+    get_login() {
+        ApiService.get('users/login', {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(response => {
+               
                 // if (response.data.result === true && response.status === 200) {
                 //     commit('change_response_api_home', response.data.result);
                 // }
@@ -52,7 +66,20 @@ export default {
             })
     },
     login({ commit }, payload) {
-        console.log('login')
+        ApiService.post('users/login',payload, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(response => {
+                console.log(response)
+                // if (response.data.result === true && response.status === 200) {
+                //     commit('change_response_api_home', response.data.result);
+                // }
+            })
+            .catch(error => {
+                console.log(error.response)
+            })
     }
 
 }

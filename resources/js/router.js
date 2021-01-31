@@ -21,12 +21,12 @@ export default new Router({
             component:Home,
             children:[
                 {
-                path: 'account/register',
+                path: 'users/register',
                 name: 'register',
                 component: Register
               },
               {
-                path: 'account/login',
+                path: 'users/login',
                 name:'login',
                 component: Login
               },
