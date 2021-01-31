@@ -8,6 +8,8 @@ import Notifications from './components/Admin/Notifications'
 import Settings from './components/Admin/Settings'
 import Users from './components/Admin/Users'
 import Reports from './components/Admin/Reports'
+import Register from './components/FrontEnd/sign/Register'
+import Login from './components/FrontEnd/sign/Login'
 
 Vue.use(Router);
 
@@ -16,7 +18,19 @@ export default new Router({
         {
             path:'/',
             name:'home',
-            component:Home
+            component:Home,
+            children:[
+                {
+                path: 'account/register',
+                name: 'register',
+                component: Register
+              },
+              {
+                path: 'account/login',
+                name:'login',
+                component: Login
+              },
+            ]
         },
         {
             path:'/admin',

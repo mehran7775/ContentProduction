@@ -8,12 +8,18 @@
               <div class="row">
                 <div class="col-4">
                   <div
-                    class="w-50 m-auto d-flex flex-row align-items-center justify-content-between h-100"
+                    class="w-75 m-auto d-flex flex-row align-items-center justify-content-between h-100"
                   >
                     <div>
                       <h3>پنل مدیریت</h3>
                     </div>
-                    <div>///</div>
+                    <div>
+                      <img
+                        width="16"
+                        height="16"
+                        src="../../assets/images/menu-4-16.png"
+                      />
+                    </div>
                   </div>
                 </div>
                 <div class="col-8">
@@ -41,9 +47,9 @@
                         <span>پروفایل</span>
                         </router-link>
                       </div> -->
-                      <div class="items_menu" id="it1" @click="select('it1')">
+                      <div class="items_menu" id="it1">
                         <router-link
-                          :class="[it1 ? 'selected' : null, 'router_link']"
+                          class="router_link"
                           :to="{ name: 'dashboard' }"
                         >
                           <div class="icon_items">
@@ -56,9 +62,9 @@
                           <span>پنل</span>
                         </router-link>
                       </div>
-                      <div class="items_menu" id="it2" @click="select('it2')">
+                      <div class="items_menu" id="it2">
                         <router-link
-                          :class="[it2 ? 'selected' : null, 'router_link']"
+                          class="router_link"
                           :to="{ name: 'users' }"
                         >
                           <div class="icon_items">
@@ -71,9 +77,9 @@
                           <span>کاربران</span>
                         </router-link>
                       </div>
-                      <div class="items_menu" @click="select('it3')">
+                      <div class="items_menu">
                         <router-link
-                          :class="[it3 ? 'selected' : null, 'router_link']"
+                          class="router_link"
                           :to="{ name: 'messages' }"
                         >
                           <div class="icon_items">
@@ -86,9 +92,9 @@
                           <span>پیام ها</span>
                         </router-link>
                       </div>
-                      <div class="items_menu" @click="select('it4')">
+                      <div class="items_menu">
                         <router-link
-                          :class="[it4 ? 'selected' : null, 'router_link']"
+                          class="router_link"
                           :to="{ name: 'reports' }"
                         >
                           <div class="icon_items">
@@ -101,9 +107,9 @@
                           <span>گزارشات</span>
                         </router-link>
                       </div>
-                      <div class="items_menu" @click="select('it5')">
+                      <div class="items_menu">
                         <router-link
-                          :class="[it5 ? 'selected' : null, 'router_link']"
+                          class="router_link"
                           :to="{ name: 'notifications' }"
                         >
                           <div class="icon_items">
@@ -116,9 +122,9 @@
                           <span>اعلانات</span>
                         </router-link>
                       </div>
-                      <div class="items_menu" @click="select('it6')">
+                      <div class="items_menu">
                         <router-link
-                          :class="[it6 ? 'selected' : null, 'router_link']"
+                          class="router_link"
                           :to="{ name: 'settings' }"
                         >
                           <div class="icon_items">
@@ -136,14 +142,11 @@
                 </div>
                 <div id="content" class="col-10">
                   <div class="row">
-                    <div class="col" id="detail">
-                      <transition
-                        enter-active-class="animate__animated animate__fadeIn"
-                       
-                      >
-                        <router-view></router-view>
-                      </transition>
-                    </div>
+                    <transition
+                      enter-active-class="animate__animated animate__fadeIn"
+                    >
+                      <router-view></router-view>
+                    </transition>
                   </div>
                 </div>
               </div>
@@ -159,76 +162,9 @@
 export default {
   name: "Index",
   data() {
-    return {
-      it1: false,
-      it2: false,
-      it3: false,
-      it4: false,
-      it5: false,
-      it6: false,
-    };
+    return {};
   },
-  methods: {
-    select(id) {
-      switch (id) {
-        case "it1": {
-          console.log("yes");
-          this.it1 = true;
-          this.it2 = false;
-          this.it3 = false;
-          this.it4 = false;
-          this.it5 = false;
-          this.it6 = false;
-          break;
-        }
-        case "it2": {
-          this.it1 = false;
-          this.it2 = true;
-          this.it3 = false;
-          this.it4 = false;
-          this.it5 = false;
-          this.it6 = false;
-          break;
-        }
-        case "it3": {
-          this.it1 = false;
-          this.it2 = false;
-          this.it3 = true;
-          this.it4 = false;
-          this.it5 = false;
-          this.it6 = false;
-          break;
-        }
-        case "it4": {
-          this.it1 = false;
-          this.it2 = false;
-          this.it3 = false;
-          this.it4 = true;
-          this.it5 = false;
-          this.it6 = false;
-          break;
-        }
-        case "it5": {
-          this.it1 = false;
-          this.it2 = false;
-          this.it3 = false;
-          this.it4 = false;
-          this.it5 = true;
-          this.it6 = false;
-          break;
-        }
-        case "it6": {
-          this.it1 = false;
-          this.it2 = false;
-          this.it3 = false;
-          this.it4 = false;
-          this.it5 = false;
-          this.it6 = true;
-          break;
-        }
-      }
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -261,7 +197,9 @@ export default {
 .items_menu .router_link {
   width: 100%;
   height: 100%;
+  display: inline-block;
   display: flex;
+  text-decoration: none;
   flex-direction: row;
   align-items: center;
   padding-right: 15%;
@@ -271,7 +209,7 @@ export default {
   color: #384047;
   background-color: #eaecf1;
 }
-.selected {
+a.router-link-active {
   color: #384047;
   background-color: #eaecf1;
 }
@@ -294,5 +232,8 @@ export default {
 .icon_items {
   widows: 16px;
   height: 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 </style>
