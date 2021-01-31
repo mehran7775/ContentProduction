@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -29,7 +30,7 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Throwable  $exception
+     * @param \Throwable $exception
      * @return void
      *
      * @throws \Exception
@@ -42,14 +43,45 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
+     * @param \Illuminate\Http\Request $request
+     * @param \Throwable $exception
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \Throwable
      */
     public function render($request, Throwable $exception)
     {
+        if ($request->wantsJson()) {
+            if ($exception instanceof ValidationException) {
+                return $this->renderValidation($request, $exception);
+            }
+//            elseif ($exception instanceof AuthenticationException){
+//                return $this->renderAuthentication($request,$exception);
+//            }
+            $this->renderOtherError($exception, $request);
+        }
         return parent::render($request, $exception);
     }
+
+    private function renderValidation(\Illuminate\Http\Request $request, ValidationException $exception)
+    {
+        return response([
+            'errors' => $exception->errors()
+        ],422);
+    }
+
+    private function renderOtherError(Throwable $exception, \Illuminate\Http\Request $request)
+    {
+        $exception = $this->prepareException($exception);
+        $code = method_exists($exception, 'getStatusCode') ? $exception->getStatusCode() : 500;
+//            $code = empty($code) ? 500 : $code;
+        $message = "خطای داخلی رخ داده است";
+        if (!($code = 500) || empty($exception->getMessage())) {
+            $message = $exception->getMessage();
+        }
+        return response([
+            'message' => $message,
+        ], $code);
+    }
+
 }
