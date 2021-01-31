@@ -25,3 +25,10 @@ Route::group(['namespace' => 'Api\FrontEnd'], function () {
 
 Route::group(['namespace' => 'Api\Admin'], function () {
 });
+
+Route::group(['prefix' => 'users'], function () {
+    Route::post('create', [
+        'uses' => 'AuthController@create',
+        'as' => 'create.user'
+    ]);
+});
