@@ -2,13 +2,12 @@
   <div class="vue-tempalte">
     <form class="text-right" @submit.prevent="register()">
       <legend align="right">ثبت نام</legend>
-
       <div class="form-group">
         <label>نام کامل</label>
         <input
           type="text"
           class="form-control form-control-lg"
-          v-model="form.full_name"
+          v-model="form.name"
         />
       </div>
 
@@ -50,7 +49,7 @@ export default {
   data() {
     return {
       form: new Form({
-        full_name: "",
+        name: "",
         email: "",
         password: "",
       }),
