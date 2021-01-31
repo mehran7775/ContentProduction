@@ -25,11 +25,11 @@ class AuthController extends Controller
         ]);
         if (auth()->check()) {
             return response([
-                'message' => 'شما با موفقیت وارد شدید',
+                'token' => auth()->user()->generateToken()
             ]);
         }else{
             return response([
-                'error' => 'اکانتی با این مشخصات یافت نشد',
+                'massage' => 'اکانتی با این مشخصات یافت نشد',
             ],401);
         }
 
